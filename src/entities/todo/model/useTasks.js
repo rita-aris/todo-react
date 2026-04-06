@@ -4,7 +4,7 @@ import tasksAPI from '@/shared/api/tasks'
 const tasksReducer = (state, action) => {
   switch (action.type) {
     case 'SET_ALL': {
-      return Array.isArray(action.tasks) ? action.tasks: state
+      return Array.isArray(action.tasks) ? action.tasks : state
     }
     case 'ADD': {
       return [...state, action.task]
@@ -73,7 +73,7 @@ const useTasks = () => {
     tasksAPI.add(newTask)
       .then((addedTask) => {
         dispatch({type: 'ADD', task: addedTask})
-        callbackAfterAdding
+        callbackAfterAdding()
         setSearchQuery('')
         newTaskInputRef.current.focus()
         setAppearingTaskId(addedTask.id)
